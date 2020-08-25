@@ -7,7 +7,7 @@
 clear;
 clc;
 
-machine_id = 2; % 0: container ;  1: Remi ;  2: Beast
+machine_id = 1; % 0: container ;  1: Remi ;  2: Beast
 [data_dir, code_dir, output_dir, fMRIprep_DIR] = set_dir(machine_id);
 [~]  = addpath(fullfile(code_dir, 'subfun'));
 

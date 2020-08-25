@@ -9,16 +9,22 @@ clc;
 % addpath(spm_path)
 spm('defaults', 'fmri');
 
-tgt_dir = 'D:\BIDS\olf_blind\raw';
+visible = 'off';
+
+if ~exist('machine_id', 'var')
+    machine_id = 1; % 0: container ;  1: Remi ;  2: Beast
+end
+
+% setting up directories
+[data_dir, code_dir] = set_dir(machine_id);
+tgt_dir = fullfile(data_dir, 'raw');
 
 bids =  spm_BIDS(tgt_dir);
 physio_file = spm_BIDS(bids, 'data', 'type', 'physio');
 metadata = spm_BIDS(bids, 'metadata', 'type', 'physio');
 
-out_dir = fullfile('output', 'figures', 'physio_qc');
+out_dir = fullfile(code_dir, 'output', 'figures', 'physio_qc');
 mkdir(out_dir);
-
-visible = 'off';
 
 for i_stim = 1:numel(physio_file)
 

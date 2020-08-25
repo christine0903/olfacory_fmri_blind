@@ -10,9 +10,7 @@ end
 
 % setting up directories
 [data_dir, code_dir] = set_dir(machine_id);
-
 tgt_dir = fullfile(data_dir, 'raw');
-
 out_dir = fullfile(code_dir, 'output', 'figures', 'beh_qc');
 
 visible = 'off';

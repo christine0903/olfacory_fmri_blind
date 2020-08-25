@@ -23,12 +23,12 @@ nb_2_scrub = [0 2 4]; % number of additional time points to scrub after an outli
 
 machine_id = 2;
 [data_dir, code_dir, output_dir, fMRIprep_DIR] = set_dir(machine_id);
-
+tgt_dir = fullfile(data_dir, 'raw');
 out_dir = fullfile(pwd, 'output', 'figures', 'fmriprep_qc');
 mkdir(out_dir);
 
 % Get which participant is in which group
-participants_file = fullfile(data_dir, 'raw', 'participants.tsv');
+participants_file = fullfile(tgt_dir, 'participants.tsv');
 participants = spm_load(participants_file);
 group_id = ~cellfun(@isempty, strfind(participants.participant_id, 'ctrl'));
 

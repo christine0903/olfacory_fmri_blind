@@ -1,3 +1,5 @@
+# olfaction fMRI experiment in blind and sighted control
+
 [![](https://img.shields.io/badge/Octave-CI-blue?logo=Octave&logoColor=white)](https://github.com/Remi-Gau/chem_sens_blind/actions)
 ![](https://github.com/Remi-Gau/chem_sens_blind/workflows/CI/badge.svg) 
 
@@ -32,7 +34,7 @@
 	numbering=true
 	autoSave=true
 	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc --># code base for the analysis of olfaction fMRI experiment in blind and sighted control
+<!-- /vscode-markdown-toc -->
 
 
 ##  1. <a name='Dependencies'></a>Dependencies
@@ -45,15 +47,31 @@
 | [Anatomy toolbox for SPM](https://www.fz-juelich.de/SharedDocs/Downloads/INM/INM-1/DE/Toolbox/Toolbox_22c.html?nn=563092) | 2.2          |
 | [MACs toolbox](https://github.com/JoramSoch/MACS/releases/tag/v1.3)                                                       | 1.3          |
 
-
-
 This has not been tried on Octave. Sorry open-science friends... :see_no_evil:
 
 ###  1.1. <a name='OtherDependencies'></a>Other Dependencies
 
-... are included in the `subfun/matlab_exchange` to make your life easier.
+Many are included in the `lib/matlab_exchange` to make your life easier.
 
-But might be worth using this in the future: https://github.com/mobeets/mpm
+## Content
+
+The behavioral, fMRI and quality control scripts are in the `analysis_beh`, `analysis_func`, `analysis_qc` folders respectively. The different scripts are described below.
+
+### inputs
+
+Contains the ROI used in this study. 
+
+#### Visual ROIs
+
+All of them combined in one file but also with one for each ROI. They come the [ROIs of the anatomy toolbox](https://www.fz-juelich.de/SharedDocs/Downloads/INM/INM-1/DE/Toolbox/Toolbox_22c.html?nn=563092).
+
+The _hand_ and _olfactory_ ROIs come from neurosynth and are then thresholded to only keep some of the main clusters.
+
+Additional olfacory ROIs are included for the the primary and secondary olfactory cortex and come from the intersection of the template of the olfactory network from (include DOI of paper) and the AAL template.
+
+### outputs
+
+### subfun
 
 ##  2. <a name='Dockerimages'></a>Docker images
 
@@ -63,10 +81,7 @@ But might be worth using this in the future: https://github.com/mobeets/mpm
 | [fMRIprep](https://fmriprep.readthedocs.io/en/stable/) | poldracklab/fmriprep:1.4.0  |
 | [ANTs](http://marsbar.sourceforge.net/download.html)   | kaczmarj/ants:v2.3.1-source |
 
-
-
 ##  3. <a name='fMRIQCandpreprocessing'></a>fMRI QC and preprocessing
-
 
 To make docker run, make sure you the docker daemon is running (may require admin rights)
 ```bash
@@ -97,7 +112,6 @@ The `quality_control_fmriprep_FD.m` script uses the `confounds.tsv` report from 
 
 This script also allows to estimate how many points are lost through scrubbing depending on the framewise displacement threshold and the number of points to scrub after an outlier
 
-
 ##  4. <a name='Behavioralanalysis'></a>Behavioral analysis
 
 ###  4.1. <a name='Qualitycontrol'></a>Quality control
@@ -117,7 +131,6 @@ This script also allows to estimate how many points are lost through scrubbing d
 
 `beh_PSTH` plots data with PSTH for each stimulus (averaged across runs) and also plots the mean +/- SEM (and distribution) of the number of responses.
 
-
 ##  5. <a name='fMRIanalysis'></a>fMRI analysis
 
 For those you might need to edit the `set_dir` function to specify where the code is, the folder containing the BIDS raw data and the target directory where the SPM analysis should go.
@@ -133,11 +146,7 @@ case 1 % windows matlab/octave : Remi
 
 You can also decide all the GLMs you want to try in the `get_cfg_GLMS_to_run` file.
 
-
-
 **Need more here**
-
-
 
 ###  5.1. <a name='ConvertingROIstonativespaceusingANTs'></a>Converting ROIs to native space using ANTs
 
@@ -174,13 +183,11 @@ Run the conversion script
 sh /code/inv_norm_ROIs.sh
 ```
 
-
 ###  5.2. <a name='Batches'></a>Batches
 
 There are 2 batch files `batch_MNI_space` and `batch_native_space` that can run the whole analysis in native or MNI space. Ideally once you have configured `set_dir`, they are the only things you should have to run.
 
 Below is described their content.
-
 
 ####  5.2.1. <a name='Copyandunzippingdata'></a>Copy and unzipping data
 
@@ -211,11 +218,9 @@ When running the GLM with the data in MNI space, the images of the residuals are
 
 See this [paper](https://www.nature.com/articles/s41467-019-09230-w.pdf) and this [repo](https://github.com/wiktorolszowy/fMRI_temporal_autocorrelation) for more info.
 
-
 ####  5.2.5. <a name='ModelselectionusingtheMACstoolbox'></a>Model selection using the MACs toolbox
 
 This is done by `step_6_model_selection.m` using bayesian model selection with the [MACs toolbox](https://github.com/JoramSoch/MACS/releases/tag/v1.3).
-
 
 ####  5.2.6. <a name='RunningthegrouplevelGLM'></a>Running the group level GLM
 You will first need to create the ROIs (or you can download them from neurovault (*insert URL*)) that will be used for this analysis.
@@ -225,8 +230,6 @@ You will first need to create the ROIs (or you can download them from neurovault
 `create_ROI_visual.m` creates the ROIs for the visual system. All of them combined and one for each ROI. It uses the [ROIs of the anatomy toolbox](https://www.fz-juelich.de/SharedDocs/Downloads/INM/INM-1/DE/Toolbox/Toolbox_22c.html?nn=563092).
 
 Then run this script: `step_5_run_second_level.m`
-
-
 
 ####  5.2.7. <a name='RunningtheROIbasedanalysisinnativespacetogettimecoursesandpercentsignalchangeforeachROIs'></a>Running the ROI based analysis in native space to get time courses and percent signal change for each ROIs
 

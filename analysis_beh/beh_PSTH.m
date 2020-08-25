@@ -20,7 +20,7 @@ end
 % mention where the BIDS data set is (can get the behavioral from OSF)
 tgt_dir = fullfile(data_dir, 'raw');
 
-out_dir = fullfile(pwd, 'output', 'figures', 'beh_avg');
+out_dir = fullfile(code_dir, 'output', 'figures', 'beh_avg');
 mkdir(out_dir);
 
 opt.baseline_dur = 20;

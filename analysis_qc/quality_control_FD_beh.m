@@ -8,9 +8,7 @@ clc;
 
 machine_id = 2; % 0: container ;  1: Remi ;  2: Beast
 [data_dir, code_dir, output_dir, fMRIprep_DIR] = set_dir(machine_id);
-
 tgt_dir = fullfile(data_dir, 'raw');
-
 out_dir = fullfile(code_dir, 'output', 'figures', 'fmriprep_qc');
 
 visible = 'off';

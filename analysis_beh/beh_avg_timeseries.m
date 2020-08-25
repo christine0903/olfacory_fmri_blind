@@ -44,7 +44,7 @@ max_y_axis = [ ...
 % do the loading of the data and plot
 close all;
 
-out_dir = fullfile('output', 'figures', 'beh_avg');
+out_dir = fullfile(code_dir, 'output', 'figures', 'beh_avg');
 mkdir(out_dir);
 
 tasks = spm_BIDS(bids, 'tasks');
