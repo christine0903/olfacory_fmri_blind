@@ -1,5 +1,5 @@
 [![](https://img.shields.io/badge/Octave-CI-blue?logo=Octave&logoColor=white)](https://github.com/Remi-Gau/chem_sens_blind/actions)
-![](https://github.com/Remi-Gau/chem_sens_blind/workflows/CI/badge.svg) 
+![](https://github.com/Remi-Gau/chem_sens_blind/workflows/CI/badge.svg)
 
 [![codecov](https://codecov.io/gh/Remi-Gau/chem_sens_blind/branch/master/graph/badge.svg)](https://codecov.io/gh/Remi-Gau/chem_sens_blind)
 
@@ -37,7 +37,7 @@
 
 ##  1. <a name='Dependencies'></a>Dependencies
 
-| Dependencies                                                                                                              | Used version |
+|Allo Dependencies                                                                                                              | Used version |
 |---------------------------------------------------------------------------------------------------------------------------|--------------|
 | [Matlab](https://www.mathworks.com/products/matlab.html)                                                                  | 201?         |
 | [SPM12](https://www.fil.ion.ucl.ac.uk/spm/software/spm12/)                                                                | v7487        |
